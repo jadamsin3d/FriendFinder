@@ -3,11 +3,20 @@ var matchData = require("../data/matches");
 module.exports = function(app) {
     
     app.get("/api/friendlist", function(req, res) {
-        res.json(matchData)
+        res.json(matchData);
     })
 
-    app.post("/api/friendlist", function(req, res){
-        matchData.push(req.body);
+    app.post("/api/new_friend", function(req, res){
+        let potMatch = req.body;
+        console.log(potMatch);
+        function Besties(potMatch) {
+            
+        }
+
+
+
+
+        matchData.push(potMatch);
         res.json(true);
     });
 
