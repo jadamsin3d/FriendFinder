@@ -16,13 +16,13 @@
         <hr>
         <h3>About You</h3>
         <h4>Name (required)</h4>
-        <input type="text" name="firstname">
+        <input type="text" name="firstname" class="entryname">
         <h4>Link to Selfie (required)</h4>
-        <input type="text" name="selfie">
+        <input type="text" name="selfie" class="selfielink">
         <hr>
         <h3>Question 1</h3>
         <h4>Cookie Crisp is my favorite cereal.</h4>
-        <select>
+        <select class="q1">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -31,7 +31,7 @@
         </select>
         <h3>Question 2</h3>
         <h4>Gladiator is one of the greatest movies ever.</h4>
-        <select>
+        <select class="q2">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -40,7 +40,7 @@
         </select>
         <h3>Question 3</h3>
         <h4>I love riding in the "Boat of Theseus".</h4>
-        <select>
+        <select class="q3">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -49,7 +49,7 @@
         </select>
         <h3>Question 4</h3>
         <h4>Gender is a social construct.</h4>
-        <select>
+        <select class="q4">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -58,7 +58,7 @@
         </select>
         <h3>Question 5</h3>
         <h4>Using MySQL is just the worst experience.</h4>
-        <select>
+        <select class="q5">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -67,7 +67,7 @@
         </select>
         <h3>Question 6</h3>
         <h4>Pluto deserves to be a planet again!</h4>
-        <select>
+        <select class="q6">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -76,7 +76,7 @@
         </select>
         <h3>Question 7</h3>
         <h4>The Transistor OST is a relaxing album to write code to.</h4>
-        <select>
+        <select class="q7">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -85,7 +85,7 @@
         </select>
         <h3>Question 8</h3>
         <h4>I'm a "dog person".</h4>
-        <select>
+        <select class="q8">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -94,7 +94,7 @@
         </select>
         <h3>Question 9</h3>
         <h4>I'm a "cat person".</h4>
-        <select>
+        <select class="q9">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -103,7 +103,7 @@
         </select>
         <h3>Question 10</h3>
         <h4>This was an enjoyable experience and I feel like we really connected here.</h4>
-        <select>
+        <select class="q10">
             <option value="1">1 (Strongly Agree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -111,12 +111,41 @@
             <option value="5">5 (Strongly Disagree)</option>
         </select>
         <br>
-        <button type="button" class="btn btn-primary btn-lg">Large button</button>
+        <button type="button" class="btn btn-primary btn-lg submitbtn">Submit</button>
         <hr>
-        <span>API Friends List</span>
+        <span><a href="/api/friendlist">API Friends List</a></span>
         <span>|</span>
         <span>GitHub Repo</span>
     </div>
+
+    <script>
+        $(".submitbtn").on("click", function (event) {
+            event.preventDefault();
+            let friendEntry = {
+                name: $(".entryname").val().trim(),
+                selfie: $(".selfielink").val().trim(),
+                q1: $(".q1").val(),
+                q2: $(".q2").val(),
+                q3: $(".q3").val(),
+                q4: $(".q4").val(),
+                q5: $(".q5").val(),
+                q6: $(".q6").val(),
+                q7: $(".q7").val(),
+                q8: $(".q8").val(),
+                q9: $(".q9").val(),
+                q10: $(".q10").val()
+            };
+            console.log(friendEntry.name);
+            console.log(friendEntry.selfie);
+            console.log(friendEntry.q1);
+            console.log(friendEntry.q2);
+
+            $.post("/api/friendlist", friendEntry)
+                .then(function (data) {
+                    console.log("Data Logged!");
+                });
+        });
+    </script>
 
 </body>
 
